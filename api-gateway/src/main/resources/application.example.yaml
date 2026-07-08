@@ -1,0 +1,38 @@
+spring:
+  main:
+    web-application-type: reactive
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: auth-service
+              uri: http://auth-service:8081
+              predicates:
+                - Path=/auth/**
+
+            - id: order-service
+              uri: http://order-service:8082
+              predicates:
+                - Path=/orders/**
+
+            - id: product-service
+              uri: http://product-service:8083
+              predicates:
+                - Path=/products/**
+
+            - id: notification-service
+              uri: http://notification-service:8084
+              predicates:
+                - Path=/notifications/**
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+server:
+  port: 8080

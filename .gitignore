@@ -1,0 +1,10 @@
+# Sensitive config files
+**/src/main/resources/application.yaml
+
+# Build files
+**/target/
+.idea/
+*.class
+
+# Kubernetes secrets
+k8s/secrets/app-secrets.yaml

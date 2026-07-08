@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: product-service
+
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/orderflow_products
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: product-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.orderflow.common.event"
+
+jwt:
+  secret: <your-256-bit-base64-secret>
+  access-token-expiry: 900000
+  refresh-token-expiry: 604800000
+
+server:
+  port: 8083
