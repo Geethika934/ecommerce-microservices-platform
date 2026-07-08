@@ -5,3 +5,11 @@
    powershell "[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes('your-password'))"
 4. Replace placeholders in app-secrets.yaml with your encoded values
 5. kubectl apply -f k8s/secrets/app-secrets.yaml
+
+## Setup
+
+1. Copy `application.example.yml` to `application.yml` in each service
+2. Fill in your actual credentials
+3. Generate JWT secret: `openssl rand -base64 32`
+4. Run infrastructure: `docker compose up -d`
+5. Start each service in IntelliJ
